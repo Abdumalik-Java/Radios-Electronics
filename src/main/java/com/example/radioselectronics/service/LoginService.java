@@ -34,7 +34,6 @@ public class LoginService {
         login.setUsername(dto.getUsername());
         login.setEmail(dto.getEmail());
         login.setPassword(dto.getPassword());
-        login.setRole(dto.getRole());
         repo.save(login);
         return new Result("Successfully created login information", true);
     }
@@ -46,7 +45,6 @@ public class LoginService {
             login.setUsername(dto.getUsername());
             login.setEmail(dto.getEmail());
             login.setPassword(dto.getPassword());
-            login.setRole(dto.getRole());
             repo.save(login);
             return new Result("Successfully updated login information", true);
         }
