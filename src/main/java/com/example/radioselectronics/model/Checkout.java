@@ -1,7 +1,5 @@
 package com.example.radioselectronics.model;
 
-import com.example.radioselectronics.model.entity.Role;
-import com.example.radioselectronics.model.entity.Status;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
@@ -16,22 +14,23 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Login {
+public class Checkout {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-    @Column(unique = true, nullable = false)
-    private String username;
+    @Column(nullable = false)
+    private String firstName;
+    @Column(nullable = false)
+    private String lastName;
     @Email
     private String email;
+    @Column(nullable = false, unique = true)
+    private String phone;
     @Column(nullable = false)
     private String password;
-
-    @Enumerated(EnumType.STRING)
-    private Status status;
-    @Enumerated(EnumType.STRING)
-    private Role role;
+    @Column(nullable = false)
+    private String companyName;
     @CreatedDate
     private LocalDateTime createdDateTime = LocalDateTime.now();
 

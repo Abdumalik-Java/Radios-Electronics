@@ -1,13 +1,10 @@
 package com.example.radioselectronics.model;
 
-import com.example.radioselectronics.model.entity.Role;
 import com.example.radioselectronics.model.entity.Status;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -16,23 +13,18 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Login {
+public class Card {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-    @Column(unique = true, nullable = false)
-    private String username;
-    @Email
-    private String email;
     @Column(nullable = false)
-    private String password;
-
+    private Integer cardNumber;
+    @Column(nullable = false)
+    private LocalDateTime expiryDate;
+    @Column(nullable = false, unique = true)
+    private Long cvvNumber;
     @Enumerated(EnumType.STRING)
     private Status status;
-    @Enumerated(EnumType.STRING)
-    private Role role;
-    @CreatedDate
-    private LocalDateTime createdDateTime = LocalDateTime.now();
 
 }

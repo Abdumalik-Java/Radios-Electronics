@@ -1,9 +1,6 @@
 package com.example.radioselectronics.model;
 
-import com.example.radioselectronics.model.entity.Role;
-import com.example.radioselectronics.model.entity.Status;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,22 +13,19 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Login {
+public class Address {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-    @Column(unique = true, nullable = false)
-    private String username;
-    @Email
-    private String email;
     @Column(nullable = false)
-    private String password;
-
-    @Enumerated(EnumType.STRING)
-    private Status status;
-    @Enumerated(EnumType.STRING)
-    private Role role;
+    private String country;
+    @Column(nullable = false)
+    private String city;
+    @Column(nullable = false)
+    private String street;
+    @Column(nullable = false)
+    private String zipCode;
     @CreatedDate
     private LocalDateTime createdDateTime = LocalDateTime.now();
 
