@@ -22,42 +22,42 @@ public class CategoryController {
     CategoryService service;
 
     @GetMapping
-    @PreAuthorize("hasAnyRole('SUPERADMIN','ADMIN', 'USER')")
+    @PreAuthorize("hasAnyRole('SUPER_ADMIN','ADMIN', 'USER')")
     public HttpEntity<?> readAll() {
         List<Category> categories = service.findAll();
         return new ResponseEntity<>(categories, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('SUPERADMIN','ADMIN', 'USER')")
+    @PreAuthorize("hasAnyRole('SUPER_ADMIN','ADMIN', 'USER')")
     public HttpEntity<?> readById(@PathVariable UUID id) {
         Category byId = service.findById(id);
         return new ResponseEntity<>(byId, HttpStatus.OK);
     }
 
     @GetMapping("/{name}")
-    @PreAuthorize("hasAnyRole('SUPERADMIN','ADMIN', 'USER')")
+    @PreAuthorize("hasAnyRole('SUPER_ADMIN','ADMIN', 'USER')")
     public HttpEntity<?> readByName(@PathVariable String name) {
         Category byName = service.findByName(name);
         return new ResponseEntity<>(byName, HttpStatus.OK);
     }
 
     @PostMapping
-    @PreAuthorize("hasAnyRole('SUPERADMIN','ADMIN')")
+    @PreAuthorize("hasAnyRole('SUPER_ADMIN','ADMIN')")
     public HttpEntity<?> create(@RequestBody CategoryDto categoryDto) {
         Result result = service.create(categoryDto);
         return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasAnyRole('SUPERADMIN','ADMIN')")
+    @PreAuthorize("hasAnyRole('SUPER_ADMIN','ADMIN')")
     public HttpEntity<?> update(@PathVariable UUID id, @RequestBody CategoryDto categoryDto) {
         Result update = service.update(categoryDto, id);
         return new ResponseEntity<>(update, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyRole('SUPERADMIN','ADMIN')")
+    @PreAuthorize("hasAnyRole('SUPER_ADMIN','ADMIN')")
     public HttpEntity<?> delete(@PathVariable UUID id) {
         Result result = service.delete(id);
         return new ResponseEntity<>(result, HttpStatus.OK);

@@ -2,6 +2,6 @@ package com.example.radioselectronics.model.entity;
 
 public enum Role {
 
-    SUPERADMIN, ADMIN, USER,
+    SUPER_ADMIN, ADMIN, USER,
 
 }

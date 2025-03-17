@@ -22,42 +22,42 @@ public class ProductController {
     ProductService service;
 
     @GetMapping
-    @PreAuthorize("hasAnyRole('SUPERADMIN','ADMIN', 'USER')")
+    @PreAuthorize("hasAnyRole('SUPER_ADMIN','ADMIN', 'USER')")
     public HttpEntity<?> readAll() {
         List<Product> products = service.getProducts();
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('SUPERADMIN','ADMIN', 'USER')")
+    @PreAuthorize("hasAnyRole('SUPER_ADMIN','ADMIN', 'USER')")
     public HttpEntity<?> readOne(@PathVariable UUID id) {
         Product product = service.getProduct(id);
         return new ResponseEntity<>(product, HttpStatus.OK);
     }
 
     @GetMapping("/{name}")
-    @PreAuthorize("hasAnyRole('SUPERADMIN','ADMIN', 'USER')")
+    @PreAuthorize("hasAnyRole('SUPER_ADMIN','ADMIN', 'USER')")
     public HttpEntity<?> readByName(@PathVariable String name) {
         Product productByName = service.getProductByName(name);
         return new ResponseEntity<>(productByName, HttpStatus.OK);
     }
 
     @PostMapping
-    @PreAuthorize("hasAnyRole('SUPERADMIN','ADMIN')")
+    @PreAuthorize("hasAnyRole('SUPER_ADMIN','ADMIN')")
     public HttpEntity<?> create(@RequestBody ProductDto productDto) {
         Result product = service.createProduct(productDto);
         return new ResponseEntity<>(product, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasAnyRole('SUPERADMIN','ADMIN')")
+    @PreAuthorize("hasAnyRole('SUPER_ADMIN','ADMIN')")
     public HttpEntity<?> update(@PathVariable UUID id, @RequestBody ProductDto productDto) {
         Result product = service.updateProduct(id, productDto);
         return new ResponseEntity<>(product, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyRole('SUPERADMIN','ADMIN')")
+    @PreAuthorize("hasAnyRole('SUPER_ADMIN','ADMIN')")
     public HttpEntity<?> delete(@PathVariable UUID id) {
         Result product = service.deleteProduct(id);
         return new ResponseEntity<>(product, HttpStatus.OK);

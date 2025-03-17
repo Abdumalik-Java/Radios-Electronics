@@ -22,35 +22,35 @@ public class YourOrderController {
     YourOrderService service;
 
     @GetMapping
-    @PreAuthorize("hasAnyRole('SUPERADMIN','ADMIN', 'USER')")
+    @PreAuthorize("hasAnyRole('SUPER_ADMIN','ADMIN', 'USER')")
     public HttpEntity<?> readAll() {
         List<YourOrder> all = service.findAll();
         return new ResponseEntity<>(all, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('SUPERADMIN','ADMIN', 'USER')")
+    @PreAuthorize("hasAnyRole('SUPER_ADMIN','ADMIN', 'USER')")
     public HttpEntity<?> readOne(@PathVariable UUID id) {
         YourOrder byId = service.findById(id);
         return new ResponseEntity<>(byId, HttpStatus.OK);
     }
 
     @PostMapping
-    @PreAuthorize("hasAnyRole('SUPERADMIN','ADMIN')")
+    @PreAuthorize("hasAnyRole('SUPER_ADMIN','ADMIN')")
     public HttpEntity<?> create(@RequestBody YourOrderDto yourOrderDto) {
         Result result = service.create(yourOrderDto);
         return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasAnyRole('SUPERADMIN','ADMIN')")
+    @PreAuthorize("hasAnyRole('SUPER_ADMIN','ADMIN')")
     public HttpEntity<?> update(@PathVariable UUID id, @RequestBody YourOrderDto yourOrderDto) {
         Result update = service.update(yourOrderDto, id);
         return new ResponseEntity<>(update, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyRole('SUPERADMIN','ADMIN')")
+    @PreAuthorize("hasAnyRole('SUPER_ADMIN','ADMIN')")
     public HttpEntity<?> delete(@PathVariable UUID id) {
         Result delete = service.delete(id);
         return new ResponseEntity<>(delete, HttpStatus.OK);

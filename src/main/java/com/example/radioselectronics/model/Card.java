@@ -25,6 +25,6 @@ public class Card {
     @Column(nullable = false, unique = true)
     private Long cvvNumber;
     @Enumerated(EnumType.STRING)
-    private Status status;
+    private Status status = Status.ACTIVE;
 
 }
