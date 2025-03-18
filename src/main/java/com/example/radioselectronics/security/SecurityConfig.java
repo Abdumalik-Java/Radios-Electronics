@@ -1,5 +1,6 @@
 package com.example.radioselectronics.security;
 
+import com.example.radioselectronics.model.MD5Util;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -9,7 +10,6 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -31,12 +31,6 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(authorizationManagerRequestMatcherRegistry -> {
             authorizationManagerRequestMatcherRegistry
-                    // User class
-//                    .requestMatchers(HttpMethod.GET, "/user").permitAll()
-//                    .requestMatchers(HttpMethod.GET, "/user/*").hasAnyRole("ADMIN", "SUPER_ADMIN")
-//                    .requestMatchers(HttpMethod.POST, "/user").hasRole("USER")
-//                    .requestMatchers(HttpMethod.PUT, "/user/*").hasAnyRole("ADMIN", "USER")
-//                    .requestMatchers(HttpMethod.DELETE, "/user/*").hasAnyRole("ADMIN", "USER")
 
                     // About class
                     .requestMatchers(HttpMethod.GET, "/about","/about/*").permitAll()
@@ -144,7 +138,20 @@ public class SecurityConfig {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+        return new PasswordEncoder() {
+
+            @Override
+            public String encode(CharSequence rawPassword) {
+                return rawPassword.toString();
+            }
+
+            @Override
+            public boolean matches(CharSequence rawPassword, String encodedPassword) {
+                String md5 = MD5Util.getMD5(rawPassword.toString());
+                return md5.equals(encodedPassword);
+            }
+        };
+
     }
 
 }
