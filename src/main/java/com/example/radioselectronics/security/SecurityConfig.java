@@ -25,7 +25,6 @@ public class SecurityConfig {
     @Bean
     public AuthenticationProvider authenticationProvider() {
         String password = UUID.randomUUID().toString();
-        System.out.println("User Password : " + password);
 
         UserDetails user = User.builder()
                 .username("user")
@@ -46,7 +45,7 @@ public class SecurityConfig {
                     // About class
                     .requestMatchers(HttpMethod.GET, "/about","/about/*").permitAll()
                     .requestMatchers(HttpMethod.POST, "/about").hasAnyRole("SUPER_ADMIN", "ADMIN")
-                    .requestMatchers(HttpMethod.POST, "/about/*").hasAnyRole("SUPER_ADMIN", "ADMIN")
+                    .requestMatchers(HttpMethod.PUT, "/about/*").hasAnyRole("SUPER_ADMIN", "ADMIN")
                     .requestMatchers(HttpMethod.DELETE, "/about/*").hasAnyRole("SUPER_ADMIN", "ADMIN")
                     // Address class
                     .requestMatchers(HttpMethod.GET, "/address","/address/*").permitAll()
