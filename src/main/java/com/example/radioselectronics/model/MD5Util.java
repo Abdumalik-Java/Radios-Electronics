@@ -1,16 +1,9 @@
 package com.example.radioselectronics.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class MD5Util {
 
     public static String getMD5(String input) {

@@ -10,15 +10,9 @@ import io.jsonwebtoken.security.Keys;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.crypto.SecretKey;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class JwtUtil {
 
     private static final int tokenLiveTime = 1000 * 3600 * 24;
