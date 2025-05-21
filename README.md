@@ -8,7 +8,7 @@ Radios-Electronics is a backend application for managing an electronics store, i
 - Sales tracking
 - Customer database
 - Secure authentication
-- RESTful API
+- RESTful API + (SWAGGER UI)
 
 ## Tech Stack
 
